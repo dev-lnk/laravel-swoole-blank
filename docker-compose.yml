@@ -71,54 +71,40 @@ services:
       timeout: 3s
       retries: 30
 
-  npm:
+  scheduler:
+    container_name: ${COMPOSE_PROJECT_NAME}-scheduler
     build:
+      args:
+        gid: ${GID}
+        uid: ${UID}
       context: .
-      dockerfile: ./docker/dockerfiles/node/Dockerfile
-    container_name: ${COMPOSE_PROJECT_NAME}-npm
+      dockerfile: ./docker/dockerfiles/php/Dockerfile
+      target: scheduler
     volumes:
-      - ./:${APP_PATH}:cached
-      - ./.env:${APP_PATH}/.env
-    working_dir: ${APP_PATH}
-    profiles: ["npm"]
-    entrypoint: ['npm']
-    ports:
-      - "${APP_VITE_PORT}:5173"
+      - ./:${APP_PATH}
+      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./docker/config/php/php-fpm.conf:/usr/local/etc/php-fpm-dev.d/www.conf
+    restart: on-failure
+    depends_on:
+      - php
 
-#  scheduler:
-#    container_name: ${COMPOSE_PROJECT_NAME}-scheduler
-#    build:
-#      args:
-#        gid: ${GID}
-#        uid: ${UID}
-#      context: .
-#      dockerfile: ./docker/dockerfiles/php/Dockerfile
-#      target: scheduler
-#    volumes:
-#      - ./:${APP_PATH}
-#      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-#      - ./docker/config/php/php-fpm.conf:/usr/local/etc/php-fpm-dev.d/www.conf
-#    restart: on-failure
-#    depends_on:
-#      - php
-#
-#  worker:
-#    container_name: ${COMPOSE_PROJECT_NAME}-worker
-#    build:
-#      args:
-#        gid: ${GID}
-#        uid: ${UID}
-#      context: .
-#      dockerfile: ./docker/dockerfiles/php/Dockerfile
-#      target: worker
-#    volumes:
-#      - ./:${APP_PATH}
-#      - ./docker/config/php/supervisord.conf:/etc/supervisor/supervisord.conf
-#      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-#      - ./docker/config/php/php-fpm.conf:/usr/local/etc/php-fpm-dev.d/www.conf
-#    restart: on-failure
-#    depends_on:
-#      - php
+  worker:
+    container_name: ${COMPOSE_PROJECT_NAME}-worker
+    build:
+      args:
+        gid: ${GID}
+        uid: ${UID}
+      context: .
+      dockerfile: ./docker/dockerfiles/php/Dockerfile
+      target: worker
+    volumes:
+      - ./:${APP_PATH}
+      - ./docker/config/php/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./docker/config/php/php-fpm.conf:/usr/local/etc/php-fpm-dev.d/www.conf
+    restart: on-failure
+    depends_on:
+      - php
 
 volumes:
   db-data:

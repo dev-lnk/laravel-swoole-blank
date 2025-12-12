@@ -1,1 +1,0 @@
-FROM node:25.2-alpine3.22

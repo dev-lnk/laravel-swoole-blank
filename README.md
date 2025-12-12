@@ -50,11 +50,6 @@ make octane-status  # or ./octane.sh status
 make octane-reload  # or ./octane.sh reload
 ```
 
-### 📚 Documentation
-- **[QUICK_START_OCTANE.md](QUICK_START_OCTANE.md)** - 🚀 Быстрый старт и основные команды
-- **[OCTANE_SETUP.md](OCTANE_SETUP.md)** - 🔧 Детальная конфигурация и настройки
-- **[MIGRATION_TO_OCTANE.md](MIGRATION_TO_OCTANE.md)** - ⚠️ Важные изменения и best practices
-
 ## About
 This is a Blank MoonShine 4 based on the [laravel-blank](https://github.com/dev-lnk/laravel-blank) project.
 

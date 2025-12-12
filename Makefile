@@ -83,7 +83,7 @@ it:
 
 .PHONY: it-app
 it-app:
-	docker exec -it $(app) /bin/bash
+	docker exec -it --user app-user $(app) /bin/bash
 
 .PHONY: it-nginx
 it-nginx:

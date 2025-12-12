@@ -10,6 +10,6 @@ class ScheduleHandler
 {
     public function __invoke(Schedule $schedule): void
     {
-
+        $schedule->command('schedule:test')->everyMinute();
     }
 }
