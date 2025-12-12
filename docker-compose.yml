@@ -28,7 +28,7 @@ services:
     volumes:
       - ./:/var/www/app
       - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./docker/config/php/php-fpm.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./docker/config/php/supervisord-octane.conf:/etc/supervisor/conf.d/supervisord.conf
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
@@ -36,6 +36,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+    ports:
+      - "8000:8000"
 
   db:
     container_name: ${COMPOSE_PROJECT_NAME}-db

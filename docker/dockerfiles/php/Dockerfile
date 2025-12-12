@@ -19,15 +19,35 @@ RUN apt-get update && apt-get install -y \
     htop \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
-    default-mysql-client
+    default-mysql-client \
+    libcurl4-openssl-dev \
+    libc-ares-dev \
+    libpq-dev \
+    libssl-dev \
+    ca-certificates \
+    gnupg \
+    libicu-dev
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
+RUN docker-php-ext-configure intl
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip sockets intl
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
+
+# Install Swoole
+RUN pecl install swoole \
+    && docker-php-ext-enable swoole
+
+# Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# Install chokidar globally
+RUN npm install -g chokidar-cli
 
 COPY --from=composer:2.8.5 /usr/bin/composer /usr/bin/composer
 
@@ -53,10 +73,9 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 
 RUN chmod -R 775 ./storage ./bootstrap/cache
 
-USER app-user
+USER root
 
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["php-fpm"]
 
 FROM php AS build
 
@@ -73,10 +92,11 @@ RUN chmod -R 775 ./storage ./bootstrap/cache
 
 FROM build AS prod
 COPY ./docker/config/php/entrypoint-prod.sh /usr/local/bin/entrypoint.sh
+COPY ./docker/config/php/supervisord-octane-prod.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN rm -rf /docker
+USER root
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
-CMD ["php-fpm"]
 
 FROM build AS worker
 RUN rm -rf /docker

@@ -28,6 +28,33 @@
 - Check the application's operation using the link `http://localhost/admin` or `http://localhost:${APP_WEB_PORT}/admin`.
 - Run stat analysis and tests using the command `make check`.
 
+## ⚡ Laravel Octane + Swoole
+This project is configured to run with Laravel Octane and Swoole for high performance.
+
+### Features
+- ✅ Swoole server with supervisor
+- ✅ Nginx reverse proxy to Swoole
+- ✅ File watching with chokidar (dev mode)
+- ✅ Auto workers configuration
+- ✅ WebSocket support
+
+### Quick Start
+```bash
+# Rebuild containers with Octane support
+docker-compose build --no-cache php && docker-compose up -d
+
+# Check status
+make octane-status  # or ./octane.sh status
+
+# Reload workers after code changes
+make octane-reload  # or ./octane.sh reload
+```
+
+### 📚 Documentation
+- **[QUICK_START_OCTANE.md](QUICK_START_OCTANE.md)** - 🚀 Быстрый старт и основные команды
+- **[OCTANE_SETUP.md](OCTANE_SETUP.md)** - 🔧 Детальная конфигурация и настройки
+- **[MIGRATION_TO_OCTANE.md](MIGRATION_TO_OCTANE.md)** - ⚠️ Важные изменения и best practices
+
 ## About
 This is a Blank MoonShine 4 based on the [laravel-blank](https://github.com/dev-lnk/laravel-blank) project.
 

@@ -38,6 +38,36 @@ rebuild-app:
 restart-worker:
 	docker restart $(COMPOSE_PROJECT_NAME)-worker
 
+#octane
+.PHONY: octane-start
+octane-start:
+	$(run) supervisorctl start octane
+
+.PHONY: octane-stop
+octane-stop:
+	$(run) supervisorctl stop octane
+
+.PHONY: octane-restart
+octane-restart:
+	$(run) supervisorctl restart octane
+
+.PHONY: octane-reload
+octane-reload:
+	$(run) php artisan octane:reload
+
+.PHONY: octane-status
+octane-status:
+	$(run) supervisorctl status octane
+	$(run) ps aux | grep swoole
+
+.PHONY: octane-logs
+octane-logs:
+	$(run) supervisorctl tail -f octane
+
+.PHONY: octane-watch
+octane-watch:
+	$(run) php artisan octane:start --watch --server=swoole --host=0.0.0.0 --port=8000
+
 .PHONY: up
 up:
 	docker-compose -f docker-compose.yml up -d $(c)
