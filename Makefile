@@ -153,11 +153,11 @@ check: rector lint analyse test
 #npm
 .PHONY: npm
 npm:
-	docker-compose run --rm --service-ports $(app-npm) $(c)
+	$(run) npm $(c)
 
 .PHONY: npm-install
 npm-install:
-	docker-compose run --rm --service-ports $(app-npm) install $(c)
+	$(run) npm install $(c)
 
 .PHONY: npm-update
 npm-update:
@@ -165,8 +165,8 @@ npm-update:
 
 .PHONY: npm-build
 npm-build:
-	docker-compose run --rm --service-ports $(app-npm) run build $(c)
+	$(run) npm run build $(c)
 
 .PHONY: npm-host
 npm-host:
-	docker-compose run --rm --service-ports $(app-npm) run dev --host $(c)
+	$(run) npm run dev --host $(c)
