@@ -4,7 +4,7 @@ THIS_FILE := $(lastword $(MAKEFILE_LIST))
 
 app := $(COMPOSE_PROJECT_NAME)-php
 nginx := $(COMPOSE_PROJECT_NAME)-nginx
-mysql := $(COMPOSE_PROJECT_NAME)-mysql
+postgres := $(COMPOSE_PROJECT_NAME)-db
 app-npm := npm
 path := /var/www/app
 run := docker exec --user app-user $(app)
@@ -89,9 +89,9 @@ it-app:
 it-nginx:
 	docker exec -it $(nginx) /bin/bash
 
-.PHONY: it-mysql
-it-mysql:
-	docker exec -it $(mysql) /bin/bash
+.PHONY: it-postgres
+it-postgres:
+	docker exec -it $(postgres) /bin/bash
 
 .PHONY: migrate
 migrate:
@@ -170,3 +170,32 @@ npm-build:
 .PHONY: npm-host
 npm-host:
 	$(run) npm run dev --host $(c)
+
+#production
+.PHONY: build-prod
+build-prod:
+	docker-compose -f docker-compose.prod.yml up --build -d $(c)
+
+.PHONY: up-prod
+up-prod:
+	docker-compose -f docker-compose.prod.yml up -d $(c)
+
+.PHONY: stop-prod
+stop-prod:
+	docker-compose -f docker-compose.prod.yml stop $(c)
+
+.PHONY: down-prod
+down-prod:
+	docker-compose -f docker-compose.prod.yml down $(c)
+
+.PHONY: logs-prod
+logs-prod:
+	docker-compose -f docker-compose.prod.yml logs -f $(c)
+
+.PHONY: ps-prod
+ps-prod:
+	docker-compose -f docker-compose.prod.yml ps
+
+.PHONY: deploy
+deploy:
+	sudo ./deploy.sh $(t)
