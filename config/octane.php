@@ -149,14 +149,20 @@ return [
     */
 
     'swoole' => [
+        'memory_limit' => '512M',
         'options' => [
             'log_file' => storage_path('logs/swoole_http.log'),
-            'log_level' => env('SWOOLE_LOG_LEVEL', SWOOLE_LOG_INFO),
-            'package_max_length' => 10 * 1024 * 1024, // 10MB
+            'log_level' => env('SWOOLE_LOG_LEVEL', 'SWOOLE_LOG_INFO'),
             'buffer_output_size' => 10 * 1024 * 1024, // 10MB
             'socket_buffer_size' => 128 * 1024 * 1024, // 128MB
-            'max_request' => 1000,
             'open_http2_protocol' => true,
+
+            'worker_num' => 16,                    // 2x CPU для I/O-bound Laravel [web:57]
+            'task_worker_num' => 16,               // Для Queue/тяжёлых задач [web:55]
+            'reactor_num' => 4,                   // = CPU cores [web:61]
+            'max_request' => 2000,                // Перезапуск после 2000 req [web:57]
+            'open_cpu_affinity' => true,          // Привязка к ядрам [web:61]
+            'package_max_length' => 20 * 1024 * 1024, // 20MB на запрос [web:55]
         ],
     ],
 
