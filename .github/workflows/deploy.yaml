@@ -6,7 +6,7 @@ on:
             - "*"
 
 env:
-    COMPOSE_PROJECT_NAME: poems
+    COMPOSE_PROJECT_NAME: laravel-swoole-blank
 
 jobs:
     docker-db:

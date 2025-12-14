@@ -23,7 +23,7 @@ Navigate to your GitHub repository settings:
 - **How to create**:
   1. Go to https://hub.docker.com/settings/security
   2. Click "New Access Token"
-  3. Give it a name (e.g., "GitHub Actions poems")
+  3. Give it a name (e.g., "GitHub Actions laravel-swoole-blank")
   4. Select permissions: "Read, Write, Delete"
   5. Copy the generated token (you won't see it again!)
 - **Security**: Never commit this token to your repository
@@ -43,11 +43,11 @@ git push origin v1.0.0
 
 GitHub Actions will automatically:
 1. Build 5 Docker images:
-   - `poems-db` (PostgreSQL database)
-   - `poems-nginx` (Nginx web server)
-   - `poems-php` (Laravel Octane with Swoole)
-   - `poems-worker` (Queue worker)
-   - `poems-scheduler` (Laravel scheduler)
+   - `laravel-swoole-blank-db` (PostgreSQL database)
+   - `laravel-swoole-blank-nginx` (Nginx web server)
+   - `laravel-swoole-blank-php` (Laravel Octane with Swoole)
+   - `laravel-swoole-blank-worker` (Queue worker)
+   - `laravel-swoole-blank-scheduler` (Laravel scheduler)
 2. Tag them with your git tag (e.g., `v1.0.0`)
 3. Push them to Docker Hub
 
@@ -60,7 +60,7 @@ After images are pushed to Docker Hub, deploy them on your production server:
 ssh user@your-server.com
 
 # Navigate to project directory
-cd /path/to/poems
+cd /path/to/laravel-swoole-blank
 
 # Run deployment script with the tag
 sudo ./deploy.sh v1.0.0
@@ -96,8 +96,8 @@ sudo usermod -aG docker $USER
 
 ```bash
 # Clone repository (or copy files)
-git clone https://github.com/yourusername/poems.git
-cd poems
+git clone https://github.com/yourusername/laravel-swoole-blank.git
+cd laravel-swoole-blank
 
 # Copy and configure .env file
 cp .env.production.example .env
@@ -177,13 +177,13 @@ Key environment variables in production `.env`:
 
 ```bash
 # Docker configuration
-COMPOSE_PROJECT_NAME=poems
+COMPOSE_PROJECT_NAME=laravel-swoole-blank
 DOCKER_HUB_USER=your_dockerhub_username
 IMAGE_TAG=v1.0.0
 
 # Database
 POSTGRES_PASSWORD=your_secure_password
-DB_DATABASE=poems_production
+DB_DATABASE=laravel-swoole-blank_production
 
 # Laravel
 APP_ENV=production
@@ -202,39 +202,39 @@ APP_URL=https://your-domain.com
 docker login
 
 # Verify credentials
-docker pull your_dockerhub_username/poems-php:v1.0.0
+docker pull your_dockerhub_username/laravel-swoole-blank-php:v1.0.0
 ```
 
 ### Container won't start
 ```bash
 # Check logs
-docker logs poems-php
+docker logs laravel-swoole-blank-php
 
 # Check container status
-docker ps -a | grep poems
+docker ps -a | grep laravel-swoole-blank
 
 # Restart specific container
-docker restart poems-php
+docker restart laravel-swoole-blank-php
 ```
 
 ### Database connection issues
 ```bash
 # Check database container
-docker logs poems-db
+docker logs laravel-swoole-blank-db
 
 # Verify network
 docker network ls
-docker network inspect poems_default
+docker network inspect laravel-swoole-blank_default
 
 # Test connection from PHP container
-docker exec poems-php pg_isready -h poems-db -U postgres
+docker exec laravel-swoole-blank-php pg_isready -h laravel-swoole-blank-db -U postgres
 ```
 
 ### Permission issues
 ```bash
 # Fix storage permissions
-docker exec poems-php chown -R www-data:www-data /var/www/app/storage
-docker exec poems-php chmod -R 775 /var/www/app/storage
+docker exec laravel-swoole-blank-php chown -R www-data:www-data /var/www/app/storage
+docker exec laravel-swoole-blank-php chmod -R 775 /var/www/app/storage
 ```
 
 ---
@@ -281,7 +281,7 @@ git push origin v1.0.0
 ### Deploy on server
 ```bash
 ssh user@server
-cd /path/to/poems
+cd /path/to/laravel-swoole-blank
 sudo ./deploy.sh v1.0.0
 ```
 

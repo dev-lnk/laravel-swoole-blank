@@ -104,4 +104,5 @@ CMD ["/bin/sh", "-c", "supervisord -c /etc/supervisor/supervisord.conf"]
 
 FROM build AS scheduler
 RUN rm -rf /docker
+USER app-user
 CMD ["/bin/sh", "-c", "nice -n 10 sleep 60 && php /var/www/app/artisan schedule:run --verbose --no-interaction"]
