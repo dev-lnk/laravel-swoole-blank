@@ -45,7 +45,7 @@ GitHub Actions will automatically:
 1. Build 5 Docker images:
    - `poems-db` (PostgreSQL database)
    - `poems-nginx` (Nginx web server)
-   - `poems-php` (PHP-FPM with Laravel)
+   - `poems-php` (Laravel Octane with Swoole)
    - `poems-worker` (Queue worker)
    - `poems-scheduler` (Laravel scheduler)
 2. Tag them with your git tag (e.g., `v1.0.0`)
