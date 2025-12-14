@@ -90,16 +90,12 @@ RUN chmod -R 775 ./storage ./bootstrap/cache
 
 FROM build AS prod
 COPY ./docker/config/php/entrypoint-prod.sh /usr/local/bin/entrypoint.sh
-COPY ./docker/config/php/supervisord-octane-prod.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /usr/local/bin/entrypoint.sh
-RUN rm -rf /docker
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 FROM build AS worker
-RUN rm -rf /docker
 CMD ["/bin/sh", "-c", "supervisord -c /etc/supervisor/supervisord.conf"]
 
 FROM build AS scheduler
-RUN rm -rf /docker
 USER app-user
 CMD ["/bin/sh", "-c", "nice -n 10 sleep 60 && php /var/www/app/artisan schedule:run --verbose --no-interaction"]
