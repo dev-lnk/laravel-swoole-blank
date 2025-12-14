@@ -44,18 +44,18 @@ services:
     container_name: ${COMPOSE_PROJECT_NAME}-db
     build:
       context: .
-      dockerfile: ./docker/dockerfiles/mysql/Dockerfile
+      dockerfile: ./docker/dockerfiles/postgres/Dockerfile
     volumes:
-      - db-data:/var/lib/mysql
-      - ./docker/config/mysql/mysql.cnf:/etc/mysql/conf.d/mysql.cnf
-      - ./docker/config/mysql/init:/docker-entrypoint-initdb.d
+      - db-data:/var/lib/postgresql/data
+      - ./docker/config/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./docker/config/postgres/init:/docker-entrypoint-initdb.d
     ports:
-      - "${APP_MYSQL_PORT}:3306"
+      - "${APP_POSTGRES_PORT}:5432"
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASS}
-      - MYSQL_DATABASE=${DB_DATABASE}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: [ "CMD-SHELL", "pg_isready", "-U", "postgres" ]
       timeout: 10s
       retries: 10
 

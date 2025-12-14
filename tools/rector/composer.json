@@ -1,6 +1,6 @@
 {
     "require-dev": {
-        "rector/rector": "^2.2.11"
+        "rector/rector": "^2.2.14"
     },
     "config": {
         "bump-after-update": "dev",

@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
     htop \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
-    default-mysql-client \
+    postgresql-client \
     libcurl4-openssl-dev \
     libc-ares-dev \
     libpq-dev \
@@ -32,7 +32,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype
 RUN docker-php-ext-configure intl
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip sockets intl
+RUN docker-php-ext-install pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip sockets intl
 
 RUN pecl install redis \
     && docker-php-ext-enable redis
@@ -70,8 +70,8 @@ COPY . .
 
 COPY ./docker/config/php/entrypoint-dev.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
-
 RUN chmod -R 775 ./storage ./bootstrap/cache
+RUN mkdir -p /tmp/cache && chown -R app-user:app-user /tmp/cache
 
 USER root
 

@@ -7,7 +7,7 @@ nginx := $(COMPOSE_PROJECT_NAME)-nginx
 mysql := $(COMPOSE_PROJECT_NAME)-mysql
 app-npm := npm
 path := /var/www/app
-run := docker exec $(app)
+run := docker exec --user app-user $(app)
 
 #docker
 .PHONY: init
@@ -161,7 +161,7 @@ npm-install:
 
 .PHONY: npm-update
 npm-update:
-	docker-compose run --rm --service-ports $(app-npm) update $(c)
+	$(run) npm update $(c)
 
 .PHONY: npm-build
 npm-build:
