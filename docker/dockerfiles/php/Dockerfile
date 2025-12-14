@@ -73,8 +73,6 @@ RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN chmod -R 775 ./storage ./bootstrap/cache
 RUN mkdir -p /tmp/cache && chown -R app-user:app-user /tmp/cache
 
-USER root
-
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 FROM php AS build
@@ -95,7 +93,6 @@ COPY ./docker/config/php/entrypoint-prod.sh /usr/local/bin/entrypoint.sh
 COPY ./docker/config/php/supervisord-octane-prod.conf /etc/supervisor/conf.d/supervisord.conf
 RUN chmod +x /usr/local/bin/entrypoint.sh
 RUN rm -rf /docker
-USER root
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 FROM build AS worker

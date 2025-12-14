@@ -6,7 +6,7 @@ on:
             - "*"
 
 env:
-    COMPOSE_PROJECT_NAME: laravel-swoole-blank
+    COMPOSE_PROJECT_NAME: ${{ secrets.PROJECT_NAME }}
 
 jobs:
     docker-db:
