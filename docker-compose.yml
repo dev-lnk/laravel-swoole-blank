@@ -20,7 +20,6 @@ services:
         uid: ${UID}
         xdebug_idekey: ${XDEBUG_IDEKEY}
         xdebug_client_port: ${XDEBUG_CLIENT_PORT}
-        target: dev
       context: .
       dockerfile: ./docker/dockerfiles/php/Dockerfile
       target: dev
@@ -61,7 +60,7 @@ services:
 
   redis:
     container_name: ${COMPOSE_PROJECT_NAME}-redis
-    image: redis:8.2.0-alpine
+    image: redis:8.2-alpine
     volumes:
       - redis-data:/data
     ports:

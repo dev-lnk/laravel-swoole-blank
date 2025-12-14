@@ -47,7 +47,7 @@ services:
     volumes:
       - ./.env:${APP_PATH}/.env
       - ./docker/config/php/production/php.ini:/usr/local/etc/php/conf.d/php.ini
-      - ./docker/config/php/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./docker/config/php/production/supervisord.conf:/etc/supervisor/supervisord.conf
       - type: volume
         source: storage
         target: ${APP_PATH}/storage
@@ -70,7 +70,7 @@ services:
       - POSTGRES_DB=${DB_DATABASE}
 
   redis:
-    image: redis:7.0.11-alpine
+    image: redis:8.2-alpine
     container_name: ${COMPOSE_PROJECT_NAME}-redis
     restart: unless-stopped
     volumes:
