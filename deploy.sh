@@ -39,17 +39,17 @@ fi
 echo "Stopping production containers..."
 make stop-prod || true
 
-# Pull new images
-echo "Pulling new Docker images..."
-docker-compose -f docker-compose.prod.yml pull
-
 # Remove old containers (only project-specific ones)
 echo "Removing old containers..."
-docker container rm -f $(docker ps -a -q --filter "name=${COMPOSE_PROJECT_NAME}") 2>/dev/null || true
+docker-compose -f docker-compose.prod.yml rm -y
 
 # Clean up unused images
 echo "Cleaning up unused images..."
 docker image prune -f
+
+# Pull new images
+echo "Pulling new Docker images..."
+docker-compose -f docker-compose.prod.yml pull
 
 # Start containers with new images
 echo "Starting production containers..."
