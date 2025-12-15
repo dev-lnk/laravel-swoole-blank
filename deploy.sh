@@ -41,7 +41,7 @@ make stop-prod || true
 
 # Remove old containers (only project-specific ones)
 echo "Removing old containers..."
-docker-compose -f docker-compose.prod.yml rm -y
+docker-compose -f docker-compose.prod.yml rm
 
 # Clean up unused images
 echo "Cleaning up unused images..."
