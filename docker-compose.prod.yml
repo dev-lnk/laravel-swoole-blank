@@ -21,6 +21,7 @@ services:
     volumes:
       - ./.env:${APP_PATH}/.env
       - ./docker/config/php/production/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./docker/config/php/production/supervisord-octane.conf:/etc/supervisor/conf.d/supervisord.conf
       - type: volume
         source: storage
         target: ${APP_PATH}/storage

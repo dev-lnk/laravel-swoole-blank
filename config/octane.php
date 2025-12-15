@@ -157,8 +157,8 @@ return [
             'socket_buffer_size' => 128 * 1024 * 1024, // 128MB
             'open_http2_protocol' => true,
 
-            'worker_num' => 16,                    // 2x CPU для I/O-bound Laravel [web:57]
-            'task_worker_num' => 16,               // Для Queue/тяжёлых задач [web:55]
+            'worker_num' => 4,                    // 2x CPU для I/O-bound Laravel [web:57]
+            'task_worker_num' => 2,             // Для Queue/тяжёлых задач [web:55]
             'reactor_num' => 4,                   // = CPU cores [web:61]
             'max_request' => 2000,                // Перезапуск после 2000 req [web:57]
             'open_cpu_affinity' => true,          // Привязка к ядрам [web:61]
