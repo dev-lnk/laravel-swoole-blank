@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Symfony\Component\HttpFoundation\Request;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if ($this->app->environment('production')) {
-            $this->app['request']->server->set('HTTPS','on');
+            /** @var Request $request */
+            $request = $this->app->get('request');
+            $request->server->set('HTTPS', 'on');
             URL::forceHttps();
         }
     }
