@@ -36,7 +36,6 @@ services:
       redis:
         condition: service_healthy
     ports:
-      - "8000:8000"
       - "${APP_VITE_PORT}:5173"
 
   db:
