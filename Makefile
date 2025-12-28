@@ -171,6 +171,9 @@ npm-build:
 npm-host:
 	$(run) npm run dev --host $(c)
 
+tag:
+	git tag $(t) && git push origin $(t)
+
 #production
 .PHONY: build-prod
 build-prod:
