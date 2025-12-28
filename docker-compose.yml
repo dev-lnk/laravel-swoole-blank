@@ -82,7 +82,7 @@ services:
     volumes:
       - ./:${APP_PATH}
       - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-    restart: on-failure
+    restart: unless-stopped
     depends_on:
       - php
 
