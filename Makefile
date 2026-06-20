@@ -109,6 +109,10 @@ migrate-fresh:
 migration:
 	$(run) php artisan make:migration $(m)
 
+.PHONY: remove-moonshine
+remove-moonshine:
+	$(run) composer remove moonshine/moonshine
+
 #composer
 .PHONY: composer-install
 composer-install:

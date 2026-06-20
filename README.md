@@ -1,4 +1,4 @@
-# MoonShine 4 blank project
+# Laravel 13 (Octane + Swoole) blank project with MoonShine admin
 
 ---
 
@@ -38,20 +38,8 @@ This project is configured to run with Laravel Octane and Swoole for high perfor
 - ✅ Auto workers configuration
 - ✅ WebSocket support
 
-### Quick Start
-```bash
-# Rebuild containers with Octane support
-docker-compose build --no-cache php && docker-compose up -d
-
-# Check status
-make octane-status  # or ./octane.sh status
-
-# Reload workers after code changes
-make octane-reload  # or ./octane.sh reload
-```
-
-## About
-This is a Blank MoonShine 4 based on the [laravel-blank](https://github.com/dev-lnk/laravel-blank) project.
+### MoonShine Admin
+MoonShine admin panel is installed primarily to assess system health, use `make remove-moonshine`
 
 ### Other
 - Many commands to speed up development and work with docker can be found in the `Makefile`
