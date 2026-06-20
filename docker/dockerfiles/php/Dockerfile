@@ -1,4 +1,4 @@
-FROM php:8.4-cli AS php
+FROM php:8.5-cli AS php
 
 WORKDIR /var/www/app
 
@@ -49,10 +49,16 @@ RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
 # Install chokidar globally
 RUN npm install -g chokidar-cli
 
-COPY --from=composer:2.8.5 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.10.1 /usr/bin/composer /usr/bin/composer
 
 RUN groupadd -g ${gid} app-user && useradd -u ${uid} -g app-user -m -s /bin/bash app-user
 RUN mkdir -p /var/www/app && chown -R app-user:app-user /var/www/app
+
+FROM php AS app-init
+COPY . .
+RUN chmod -R 775 ./storage ./bootstrap/cache
+RUN mkdir -p /tmp/cache && chown -R app-user:app-user /tmp/cache
+USER app-user
 
 FROM php AS dev
 
@@ -61,7 +67,7 @@ ARG xdebug_client_port
 
 COPY ./docker/config/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
-RUN pecl install xdebug-3.4.5 && \
+RUN pecl install xdebug-3.5.3 && \
       docker-php-ext-enable xdebug && \
       sed -i "s/^xdebug\.idekey=.*/xdebug.idekey=${xdebug_idekey}/" /usr/local/etc/php/conf.d/xdebug.ini && \
       sed -i "s/^xdebug\.client_port=.*/xdebug.client_port=${xdebug_client_port}/" /usr/local/etc/php/conf.d/xdebug.ini

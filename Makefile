@@ -15,7 +15,7 @@ init: build install
 
 .PHONY: build
 build:
-	docker-compose -f docker-compose.yml up --build -d $(c)
+	docker compose -f docker-compose.yml up --build -d $(c)
 	@echo "Run command: make install"
 	@echo "$(APP_URL)"
 
@@ -32,7 +32,7 @@ rebuild:
 
 .PHONY: rebuild-app
 rebuild-app:
-	docker-compose up -d --force-recreate --no-deps --build php
+	docker compose up -d --force-recreate --no-deps --build php
 
 .PHONY: restart-worker
 restart-worker:
@@ -70,12 +70,14 @@ octane-watch:
 
 .PHONY: up
 up:
-	docker-compose -f docker-compose.yml up -d $(c)
+	docker compose down
+	docker compose -f docker-compose.yml up -d $(c)
+	docker compose rm -f app-init
 	@echo "$(APP_URL)"
 
 .PHONY: stop
 stop:
-	docker-compose -f docker-compose.yml stop $(c)
+	docker compose -f docker-compose.yml stop $(c)
 
 .PHONY: it
 it:
@@ -181,27 +183,27 @@ tag:
 #production
 .PHONY: build-prod
 build-prod:
-	docker-compose -f docker-compose.prod.yml up --build -d $(c)
+	docker compose -f docker-compose.prod.yml up --build -d $(c)
 
 .PHONY: up-prod
 up-prod:
-	docker-compose -f docker-compose.prod.yml up -d $(c)
+	docker compose -f docker-compose.prod.yml up -d $(c)
 
 .PHONY: stop-prod
 stop-prod:
-	docker-compose -f docker-compose.prod.yml stop $(c)
+	docker compose -f docker-compose.prod.yml stop $(c)
 
 .PHONY: down-prod
 down-prod:
-	docker-compose -f docker-compose.prod.yml down $(c)
+	docker compose -f docker-compose.prod.yml down $(c)
 
 .PHONY: logs-prod
 logs-prod:
-	docker-compose -f docker-compose.prod.yml logs -f $(c)
+	docker compose -f docker-compose.prod.yml logs -f $(c)
 
 .PHONY: ps-prod
 ps-prod:
-	docker-compose -f docker-compose.prod.yml ps
+	docker compose -f docker-compose.prod.yml ps
 
 .PHONY: deploy
 deploy:

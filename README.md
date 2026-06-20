@@ -35,8 +35,7 @@ This project is configured to run with Laravel Octane and Swoole for high perfor
 - ✅ Swoole server with supervisor
 - ✅ Nginx reverse proxy to Swoole
 - ✅ File watching with chokidar (dev mode)
-- ✅ Auto workers configuration
-- ✅ WebSocket support
+- ✅ Workers configuration
 
 ### MoonShine Admin
 MoonShine admin panel is installed primarily to assess system health, use `make remove-moonshine`

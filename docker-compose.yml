@@ -13,6 +13,33 @@ services:
     depends_on:
       - php
 
+  app-init:
+    container_name: ${COMPOSE_PROJECT_NAME}-app-init
+    build:
+      args:
+        gid: ${GID}
+        uid: ${UID}
+      context: .
+      dockerfile: ./docker/dockerfiles/php/Dockerfile
+      target: app-init
+    volumes:
+      - ./:${APP_PATH}
+      - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    working_dir: ${APP_PATH}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      sh -lc "
+        composer install &&
+        npm install &&
+        php artisan migrate --force &&
+        php artisan optimize:clear &&
+        php artisan storage:link
+      "
+
   php:
     build:
       args:
@@ -31,10 +58,8 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     depends_on:
-      db:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
+      app-init:
+        condition: service_completed_successfully
     ports:
       - "${APP_VITE_PORT}:5173"
 
