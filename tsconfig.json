@@ -2,13 +2,16 @@
     "compilerOptions": {
         "target": "ESNext",
         "module": "ESNext",
-        "moduleResolution": "node",
+        "moduleResolution": "bundler",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "outDir": "./public/js",
-        "baseUrl": "./resources/ts"
+        "paths": {
+            "@/*": ["./resources/ts/*"]
+        },
+        "ignoreDeprecations": "6.0"
     },
     "include": [
         "resources/ts/**/*.ts"
