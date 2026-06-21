@@ -17,6 +17,7 @@ This rules only for PhpUnit tests
 - Write the tests only on what you were told, you do not need to do extra work
 - In tests, all dependencies are created through resolve: `resolve(UserRepositoryInterface::class)`
 - Add php doc block for resolve objects /** @var UserRepositoryInterface $userRepository */
+- Dont use self::assert<Method> in tests, use $this->assert<Method>
 - Test run from: `make test`
 - IMPORTANT!!! In factories use createOne() method instead of create()
 - IMPORTANT!!! In factories use makeOne() method instead of make()
