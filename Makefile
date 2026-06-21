@@ -113,7 +113,7 @@ migration:
 	$(run) php artisan make:migration $(m)
 
 .PHONY: ide-helper
-remove-moonshine:
+ide-helper:
 	$(run) php artisan ide-helper:models --write
 
 #composer
