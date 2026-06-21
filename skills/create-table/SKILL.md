@@ -269,6 +269,7 @@ class <Model>Factory extends Factory
     }
 }
 ```
+Once you've created the model, run `make ide-helper` to add doc blocks to the model
 
 ## Feature Tests
 
@@ -349,5 +350,6 @@ class <Model>ModelTest extends BaseFeatureTestCase
 After making the implementation changes:
 
 1. Run the relevant feature tests.
-2. Run `make check`.
-3. Fix all formatting, static-analysis, and test failures.
+2. Run `make ide-helper`.
+3. Run `make check`.
+4. Fix all formatting, static-analysis, and test failures.

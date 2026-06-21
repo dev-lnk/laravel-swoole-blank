@@ -126,4 +126,5 @@ public function comments(): HasMany
 // and other relationships
 ```
 - For single-line annotations, always write them on one line.
-- After you have changed the file, check it `make check`
+- Once you've created the model, run `make ide-helper` to add doc blocks to the model
+- After you have changed the files, check it `make check`

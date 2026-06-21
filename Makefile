@@ -95,6 +95,7 @@ it-nginx:
 it-postgres:
 	docker exec -it $(postgres) /bin/bash
 
+# Laravel
 .PHONY: migrate
 migrate:
 	$(run) php artisan migrate
@@ -111,9 +112,9 @@ migrate-fresh:
 migration:
 	$(run) php artisan make:migration $(m)
 
-.PHONY: remove-moonshine
+.PHONY: ide-helper
 remove-moonshine:
-	$(run) composer remove moonshine/moonshine
+	$(run) php artisan ide-helper:models --write
 
 #composer
 .PHONY: composer-install
