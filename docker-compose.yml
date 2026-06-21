@@ -35,9 +35,9 @@ services:
       sh -lc "
         composer install &&
         npm install &&
-        php artisan migrate --force &&
         php artisan optimize:clear &&
-        php artisan storage:link
+        php artisan migrate --force &&
+        php artisan storage:link --force
       "
 
   php:
@@ -52,7 +52,7 @@ services:
       target: dev
     container_name: ${COMPOSE_PROJECT_NAME}-php
     volumes:
-      - ./:/var/www/app
+      - ./:${APP_PATH}
       - ./docker/config/php/php.ini:/usr/local/etc/php/conf.d/php.ini
       - ./docker/config/php/supervisord-octane.conf:/etc/supervisor/conf.d/supervisord.conf
     extra_hosts:
