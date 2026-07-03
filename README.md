@@ -21,6 +21,7 @@
 - Run the command `make build`, and then `make install`.
 - Check the application's operation using the link `http://localhost` or `http://localhost:${APP_WEB_PORT}`.
 - Run stat analysis and tests using the command `make test`.
+- Run the `laravel-starter-kit` skill in your AI agent to create a starter app with login forms
 
 ## ⚡ Laravel Octane + Swoole
 This project is configured to run with Laravel Octane and Swoole for high performance.
@@ -176,6 +177,23 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->create();
 ```
+
+## AI
+This repository includes Codex skills in the `skills` directory. They document project-specific workflows and coding rules for AI-assisted development.
+
+### PHP
+- `php` - PHP 8.5 clean-code and typing rules for files in the `src` directory.
+- `php-unit` - PHPUnit testing rules for files in the `src/tests` directory.
+- `phpstan` - PHPStan/Larastan max-level typing guidance for Laravel code.
+
+### Laravel
+- `create-table` - Guide for creating a new entity with a migration, model, enum, factory, relationships, and feature tests.
+- `laravel` - Laravel 13 best practices and project conventions for files in the `src` directory.
+- `laravel-fortify` - Instructions for installing Laravel Fortify and building a Blade-based authentication flow.
+- `laravel-starter-kit` - Instructions for choosing and installing a Laravel starter kit stack.
+
+### Other
+- `request` - Reads a task from a specified file and executes it.
 
 ### Other
 - Many commands to speed up development and work with docker can be found in the `Makefile`
