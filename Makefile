@@ -112,6 +112,10 @@ migrate-fresh:
 migration:
 	$(run) php artisan make:migration $(m)
 
+.PHONY: artisan
+artisan:
+	$(run) php artisan $(c)
+
 .PHONY: ide-helper
 ide-helper:
 	$(run) php artisan ide-helper:models --write
@@ -128,6 +132,10 @@ composer-update:
 .PHONY: composer-du
 composer-du:
 	$(run) composer du
+
+.PHONY: composer-require
+composer-require:
+	$(run) composer require $(p)
 
 #Tools
 .PHONY: test
