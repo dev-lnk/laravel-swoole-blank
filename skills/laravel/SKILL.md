@@ -7,7 +7,7 @@ description: Best practices in Laravel for use in this project
 Always when you edit or create a file in the `src` directory
 
 ## Laravel rules
-Laravel version in this project - 13
+The Laravel version in this project is 13.
 
 Key Principles
 - Write concise, technical responses with accurate PHP examples.
@@ -17,11 +17,11 @@ Key Principles
 - Use descriptive variable and method names.
 - Use lowercase with dashes for directories (e.g., app/Http/Controllers).
 - Favor dependency injection and service containers.
-- Always use type hinting in the parameters of the method
-- Always use type hinting in the return values
+- Always use type hints for method parameters.
+- Always use return type hints.
 
 PHP/Laravel
-- Use PHP 8.4+ features when appropriate (e.g., typed properties, match expressions).
+- Use PHP 8.5+ features when appropriate (e.g., typed properties, match expressions).
 - Follow PSR-12 coding standards.
 - Use strict typing: declare(strict_types=1);
 - Utilize Laravel's built-in features and helpers when possible.
@@ -126,5 +126,5 @@ public function comments(): HasMany
 // and other relationships
 ```
 - For single-line annotations, always write them on one line.
-- Once you've created the model, run `make ide-helper` to add doc blocks to the model
-- After you have changed the files, check it `make check`
+- Once you have created the model, run `make ide-helper` to add PHPDoc blocks to the model.
+- After you have changed the files, run `make check`.

@@ -1,6 +1,6 @@
 ---
 name: laravel-fortify
-description: Description of Laravel Fortify with blade templates
+description: Description of Laravel Fortify with Blade templates
 ---
 
 # When to use

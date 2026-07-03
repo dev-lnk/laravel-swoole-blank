@@ -8,14 +8,14 @@ Manually
 
 # Description
 Follow these instructions to install the Laravel starter kit. Ask the user which stack they want to install, and depending on the user's choice, perform the installation.
-Also, in addition to the main stacks, you also have to offer Only blade. If the user chooses Only blade, ignore the instruction below, and run skill 'laravel-fortify'
+In addition to the main stacks, also offer "Only Blade". If the user chooses "Only Blade", ignore the instructions below and run the `laravel-fortify` skill.
 Example:
 ```
 1. React
 2. Svelte
 3. Vue
 4. Livewire
-5. Only blade
+5. Only Blade
 ```
 
 # Laravel Starter Kit Documentation
@@ -403,7 +403,7 @@ use Laravel\Fortify\Features;
 
 To disable a feature, comment out or remove that feature entry from the `features` array. For example, remove `Features::registration()` to disable public registration.
 
-When using the React, Svelte or Vue starter kits, you will also need to remove any references to the disabled feature's routes in your frontend code. For example, if you disable email verification, you should remove the imports and references to the verification routes in your React, Svelte, or Vue components. This is necessary because these starter kits use Wayfinder for type-safe routing, which generates route definitions at build time. If you reference routes that no longer exist, your application will fail to build.
+When using the React, Svelte, or Vue starter kits, you will also need to remove any references to the disabled feature's routes in your frontend code. For example, if you disable email verification, you should remove the imports and references to the verification routes in your React, Svelte, or Vue components. This is necessary because these starter kits use Wayfinder for type-safe routing, which generates route definitions at build time. If you reference routes that no longer exist, your application will fail to build.
 
 ## Customizing User Creation and Password Reset
 
@@ -471,16 +471,16 @@ By default, the React, Svelte, Vue, and Livewire starter kits all utilize Larave
 
 - Social authentication: Google, Microsoft, GitHub, and Apple
 - Passkey authentication
-- Email based "Magic Auth"
+- Email-based "Magic Auth"
 - SSO
 
 Using WorkOS as your authentication provider requires a WorkOS account. WorkOS offers free authentication for applications up to 1 million monthly active users.
 
-To use WorkOS AuthKit as your application's authentication provider, select the WorkOS option when creating your new starter kit powered application via `laravel new`.
+To use WorkOS AuthKit as your application's authentication provider, select the WorkOS option when creating your new starter-kit-powered application via `laravel new`.
 
 ### Configuring Your WorkOS Starter Kit
 
-After creating a new application using a WorkOS powered starter kit, you should set the `WORKOS_CLIENT_ID`, `WORKOS_API_KEY`, and `WORKOS_REDIRECT_URL` environment variables in your application's `.env` file. These variables should match the values provided to you in the WorkOS dashboard for your application:
+After creating a new application using a WorkOS-powered starter kit, you should set the `WORKOS_CLIENT_ID`, `WORKOS_API_KEY`, and `WORKOS_REDIRECT_URL` environment variables in your application's `.env` file. These variables should match the values provided to you in the WorkOS dashboard for your application:
 
 ```env
 WORKOS_CLIENT_ID=your-client-id
@@ -492,7 +492,7 @@ Additionally, you should configure the application homepage URL in your WorkOS d
 
 ### Configuring AuthKit Authentication Methods
 
-When using a WorkOS powered starter kit, we recommend that you disable "Email + Password" authentication within your application's WorkOS AuthKit configuration settings, allowing users to only authenticate via social authentication providers, passkeys, "Magic Auth", and SSO. This allows your application to totally avoid handling user passwords.
+When using a WorkOS-powered starter kit, we recommend that you disable "Email + Password" authentication within your application's WorkOS AuthKit configuration settings, allowing users to only authenticate via social authentication providers, passkeys, "Magic Auth", and SSO. This allows your application to avoid handling user passwords entirely.
 
 ### Configuring AuthKit Session Timeouts
 
@@ -514,7 +514,7 @@ composer dev:ssr
 
 ## Community Maintained Starter Kits
 
-When creating a new Laravel application using the Laravel installer, you may provide any community maintained starter kit available on Packagist to the `--using` flag:
+When creating a new Laravel application using the Laravel installer, you may provide any community-maintained starter kit available on Packagist to the `--using` flag:
 
 ```bash
 laravel new my-app --using=example/starter-kit

@@ -1,8 +1,8 @@
 ---
 name: request
 argument-hint: <file>
-description: Выполнение задачи из файла
+description: Execute a task from a file
 ---
 
-# Описание
-Read the file file and perform the task described in this file. If the file is not uploaded, use the description from the file .ai/request.md
+# Description
+Read the specified file and perform the task described in it. If no file is uploaded, use the task description from `.ai/request.md`.

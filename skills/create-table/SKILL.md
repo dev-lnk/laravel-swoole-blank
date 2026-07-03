@@ -269,7 +269,7 @@ class <Model>Factory extends Factory
     }
 }
 ```
-Once you've created the model, run `make ide-helper` to add doc blocks to the model
+Once you have created the model, run `make ide-helper` to add PHPDoc blocks to the model.
 
 ## Feature Tests
 

@@ -7,7 +7,7 @@ description: Best practices in PHP for use in this project
 Always when you edit or create a file in the `src` directory
 
 # PHP rules
-Php version in this project - 8.5
+The PHP version in this project is 8.5.
 
 ## Clean Code Guidelines
 Guidelines for writing clean, maintainable, and human-readable code. Apply these rules when writing or reviewing code to ensure consistency and quality.
@@ -17,28 +17,28 @@ Guidelines for writing clean, maintainable, and human-readable code. Apply these
 - Always specify `void` return types when methods return nothing
 
 ## Class Structure
-- Use typed properties, not docblocks:
-- Constructor property promotion when all properties can be promoted:
+- Use typed properties, not PHPDoc:
+- Use constructor property promotion when all properties can be promoted:
 - Declare class properties in the constructor whenever possible
 - All classes must be final readonly by default
-- Abstract classes must contains abstract methods or final methods
+- Abstract classes must contain abstract methods or final methods
 ## Features
-- Use PHP features (php version is defined in composer.json file) when appropriate (e.g., typed properties, match expressions).
+- Use PHP features when appropriate; the PHP version is defined in `composer.json` (e.g., typed properties, match expressions).
 ## Exceptions
 - Create custom exceptions when necessary.
-## PHPDocs
+## PHPDoc
 - Fill missing shaped array for all iterable types
-- Never generate phpdocs for non existing variable
+- Never generate PHPDoc for non-existing variables
 - Don't write comments unless asked.
-- Analyze the existing PHPDocs and if it does not match the functionality then modify the existing PHPDocs
+- Analyze the existing PHPDoc, and if it does not match the functionality, modify it
 - Delete unnecessary comments, but not those that can be used for PHPStan analysis. If the short description is the same or very similar to the method or function name, delete it.
 - Document iterables with generics:
   ```php
   /** @return Collection<int, User> */
   public function getUsers(): Collection
   ```
-- Use one-line docblocks when possible: `/** @var string */`
-- Most common type should be first in multi-type docblocks:
+- Use one-line PHPDoc blocks when possible: `/** @var string */`
+- The most common type should be first in multi-type PHPDoc blocks:
   ```php
   /** @var Collection|SomeWeirdVendor\Collection */
   ```
@@ -50,7 +50,7 @@ Guidelines for writing clean, maintainable, and human-readable code. Apply these
    */
   function someFunction(array $myArray, int $typedArgument) {}
   ```
-- Use array shape notation for fixed keys, put each key on it's own line:
+- Use array shape notation for fixed keys, and put each key on its own line:
   ```php
   /** @return array{
      first: SomeClass,
@@ -61,7 +61,7 @@ Guidelines for writing clean, maintainable, and human-readable code. Apply these
 - **Avoid else**: Use early returns instead of nested conditions
 - **Separate conditions**: Prefer multiple if statements over compound conditions
 - **Always use curly brackets** even for single statements
-- **Ternary operators**: Each part on own line unless very short
+- **Ternary operators**: Each part should be on its own line unless it is very short
 ## Strings & Formatting
 - **String interpolation** over concatenation:
 ## Enums
@@ -86,7 +86,7 @@ Guidelines for writing clean, maintainable, and human-readable code. Apply these
 - Variables, functions, and classes should reveal their purpose
 - Names should explain why something exists and how it's used
 - Avoid abbreviations unless they're universally understood
-- Set method and class names as camel case
+- Use camelCase for method names and PascalCase for class names
 ## Single Responsibility
 - Each function should do exactly one thing
 - Functions should be small and focused
@@ -116,6 +116,6 @@ Guidelines for writing clean, maintainable, and human-readable code. Apply these
 - Write clear commit messages
 - Make small, focused commits
 - Use meaningful branch names
-- IMPORTANT!! All imports should be done via use, bad - `new \App\Models\User() */`, god `use \App\Models\User; ... new User()`
+- IMPORTANT!! All imports should be done via `use`; bad: `new \App\Models\User()`, good: `use App\Models\User; ... new User()`
 ## Summary
-- After you have changed the files, check it `make check`
+- After you have changed the files, run `make check`.

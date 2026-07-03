@@ -47,7 +47,7 @@ Respect all cumulative PHPStan checks up to level Max:
 3. PHPDoc must be valid and must not contradict native types.
 4. Return types and property assignment types must be correct.
 5. Argument types must match function and method declarations.
-6. Missing typehints must be added.
+6. Missing type hints must be added.
 7. Union types must be narrowed before accessing members that exist only on some union branches.
 8. Nullable values must be checked before calling methods or accessing properties.
 

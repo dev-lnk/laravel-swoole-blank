@@ -1,25 +1,25 @@
 ---
 name: php-unit
-description: Rules for writing php tests in phpunit
+description: Rules for writing PHP tests with PHPUnit
 ---
 
 # PHP Unit
 
 ## When to use
-If you create or edit files in src/tests directory
+If you create or edit files in the `src/tests` directory.
 
 ## Description
-This rules only for PhpUnit tests
+These rules apply only to PHPUnit tests.
 
 ## Rules
-- This rules only for PhpUnit tests
-- Dont write comment in tests
-- Write the tests only on what you were told, you do not need to do extra work
-- In tests, all dependencies are created through resolve: `resolve(UserRepositoryInterface::class)`
-- Add php doc block for resolve objects /** @var UserRepositoryInterface $userRepository */
-- Dont use self::assert<Method> in tests, use $this->assert<Method>
-- Test run from: `make test`
-- IMPORTANT!!! In factories use createOne() method instead of create()
-- IMPORTANT!!! In factories use makeOne() method instead of make()
-- If you use createOne or makeOne, no need to use docblock var
-- IMPORTANT!!! After everything is done and all tests have passed, you should run the `make check` check and fix phpstan errors if there are any. Next, run only checks using phpstan after the fix
+- These rules apply only to PHPUnit tests.
+- Do not write comments in tests.
+- Write tests only for what you were asked to test; do not do extra work.
+- In tests, create all dependencies through `resolve()`: `resolve(UserRepositoryInterface::class)`.
+- Add a PHPDoc block for resolved objects: `/** @var UserRepositoryInterface $userRepository */`.
+- Do not use `self::assert<Method>` in tests; use `$this->assert<Method>`.
+- Run tests with `make test`.
+- IMPORTANT!!! In factories, use the `createOne()` method instead of `create()`.
+- IMPORTANT!!! In factories, use the `makeOne()` method instead of `make()`.
+- If you use `createOne()` or `makeOne()`, no PHPDoc `@var` block is needed.
+- IMPORTANT!!! After all work is done and all tests have passed, run `make check` and fix any PHPStan errors. After fixing them, run only the PHPStan checks.
