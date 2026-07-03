@@ -5,6 +5,7 @@ Main stack project:
 - Postgres 17
 
 # Main Rule
+- Read README.md
 - Dont see all .env files
 - All operations for php and laravel are performed from the Makefile, examples:
 - `make migration m=create_users`
