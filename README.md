@@ -3,22 +3,28 @@
 # Laravel 13 (Octane + Swoole) blank project
 
 ---
-| Included         |
-|------------------|
-| ✅ Basic setting  |
-| ✅ Phpstan        |
-| ✅ PHP CS Fixer   |
-| ✅ Rector         |
-| ✅ TypeScript     |
-| ✅ Xdebug         |
-| ✅ Docker         |
-| ✅ GitHub actions |
-| ✅ Makefile       |
+| Included                |
+|-------------------------|
+| ✅ Basic setting         |
+| ✅ Phpstan               |
+| ✅ PHP CS Fixer          |
+| ✅ Rector                |
+| ✅ TypeScript            |
+| ✅ Xdebug                |
+| ✅ Docker                |
+| ✅ GitHub actions        |
+| ✅ Makefile              |
+| ✅ Skills for AI agents |
 
 ## Installation
 - Run the git clone command `git clone git@github.com:dev-lnk/laravel-swoole-blank.git .`.
+
+### With AI agent
+- Use skill `install`.
+
+### Manually
 - Copy the `.env.example` file and rename it to `.env`, customize the `#Docker` section to your needs.
-- Run the command `make build`, and then `make install`.
+- Run the command `make init`.
 - Check the application's operation using the link `http://localhost` or `http://localhost:${APP_WEB_PORT}`.
 - Run stat analysis and tests using the command `make test`.
 - Run the `laravel-starter-kit` skill in your AI agent to create a starter app with login forms
@@ -179,7 +185,7 @@ return Application::configure(basePath: dirname(__DIR__))
 ```
 
 ## AI
-This repository includes Codex skills in the `skills` directory. They document project-specific workflows and coding rules for AI-assisted development.
+This repository includes skills in the `skills` directory. They document project-specific workflows and coding rules for AI-assisted development.
 
 ### PHP
 - `php` - PHP 8.5 clean-code and typing rules for files in the `src` directory.

@@ -1,46 +1,46 @@
-# Laravel Octane + Swoole в Docker
+# Laravel Octane + Swoole in Docker
 
-Этот проект настроен для работы с Laravel Octane и Swoole в Docker-контейнерах.
+This project is configured to run Laravel Octane and Swoole in Docker containers.
 
-## Архитектура
+## Architecture
 
-- **PHP контейнер**: Запускает Octane через Supervisor на порту 8000
-- **Nginx контейнер**: Проксирует запросы к Octane
-- **Swoole**: Высокопроизводительный сервер приложений
-- **Supervisor**: Управляет процессом Octane
-- **Chokidar**: Установлен для file watching в dev режиме
+- **PHP container**: Runs Octane through Supervisor on port 8000
+- **Nginx container**: Proxies requests to Octane
+- **Swoole**: High-performance application server
+- **Supervisor**: Manages the Octane process
+- **Chokidar**: Installed for file watching in dev mode
 
-## Конфигурация
+## Configuration
 
-### Основные файлы
+### Main files
 
 1. **docker/dockerfiles/php/Dockerfile**
-   - Установлен Swoole extension
-   - Установлен Node.js и npm
-   - Установлен chokidar-cli глобально
-   - Установлен socket extension для Swoole
+   - Installs the Swoole extension
+   - Installs Node.js and npm
+   - Installs chokidar-cli globally
+   - Installs the socket extension for Swoole
 
 2. **docker/config/php/supervisord-octane.conf**
-   - Конфигурация Supervisor для запуска Octane
+   - Supervisor configuration for running Octane
 
 3. **docker/config/nginx/nginx.conf**
-   - Проксирование к Octane (php:8000)
+   - Proxying to Octane (php:8000)
 
 4. **config/octane.php**
-   - Настроен для использования Swoole
-   - Конфигурация Swoole опций
+   - Configured to use Swoole
+   - Swoole options configuration
 
-## Мониторинг
+## Monitoring
 
-### Проверка работы Swoole
+### Checking Swoole
 
 ```bash
-# Проверить процессы Swoole
+# Check Swoole processes
 docker-compose exec php ps aux | grep swoole
 
-# Посмотреть логи supervisor
+# View supervisor logs
 docker-compose exec php supervisorctl tail -f octane
 
-# Проверить статистику Swoole
+# Check Swoole statistics
 docker-compose exec php php artisan octane:status
 ```
